@@ -19,7 +19,7 @@ int protections() //принемает значение и преабразуе�
     return number;
 }
 
-int[] array(int size = 10, int min = 100, int max = 1000) //Создает массив и заполняет его случайными целочисленными значениями
+int[] array(int size = 10, int min = 10, int max = 10) //Создает массив и заполняет его случайными значениями
 {
     int[] array = new int[size];
     
@@ -32,23 +32,23 @@ int[] array(int size = 10, int min = 100, int max = 1000) //Создает ма�
 
 }
 
-int Task_34(int[] array) // Принемает массив и выводит колличество четных элементрв массива
+void Task_34(int size = 10, int min = 100, int max = 1000) //Принемает размер массива и диапазон значений и выводит колличество четных элементрв массива
 {
-    int size = array.Length;
+    int[] arr = array(size, min, max);
     int even = 0;
     for (int i = 0; i < size; i++)
     {
-        int a = array[i];
-        if (a % 2 == 0)
+        if (arr[i] % 2 == 0)
         {
             even++;
         }
     }
-    return even;
+    var strArr = "[ " + String.Join(", ", arr) + " ]";
+    Console.WriteLine($"Массив: {strArr}");
+    Console.WriteLine($"Колличество четных элементов массива: {even}");
 }
-//Console.WriteLine(Task_34(array()));
 
-void Task_36(int size = 999999999, int min = 999999999, int max = 999999999)
+void Task_36(int size = 999999999, int min = 999999999, int max = 999999999) //Задает массив заполненный случайными значениями и находит сумму четных пазиций
 {
     while (size == 999999999 || min == 999999999 || max == 999999999 || size <= 0 || min > max)
     {
@@ -72,17 +72,44 @@ void Task_36(int size = 999999999, int min = 999999999, int max = 999999999)
         }
     }
     var str = "[" + String.Join(", ", arr) + "]";
-    Console.Write($"{str}, сумма элементов массива с нечетным индексом: {summ}");
+    Console.WriteLine($"{str}, сумма элементов массива с нечетным индексом: {summ}");
 }
-//Task_36();
 
-void Task_38()
+void Task_38(int size = 10, int min = -10, int max = 10) //Задает массив вещественных чисел. Находит разницу между максимальным и минимальным элементов массива
 {
-    
+    double[] array = new double[size];
+    double minNum = 0;
+    double maxNum = 0;
+    for (int i = 0; i < size; i++) 
+    {
+        array[i] = Math.Round(new Random().Next(min, max) + new Random().NextDouble(), 2);
+        if (minNum > array[i]) minNum = array[i];
+        if (maxNum < array[i]) maxNum = array[i];
+    }
+    var strArr = String.Join(", ", array);
+    Console.WriteLine($"Массив: {strArr}");
+    Console.WriteLine($"min = {minNum:f2}, max = {maxNum:f2}, max - min = {maxNum - minNum:f2}");
 }
 
+void menu() //Вызывает заданные методы
+{    
+    string paragraph = String.Empty;
+    while (paragraph == "0" || paragraph != "1" || paragraph != "2" || paragraph != "3" )
+    {
+        Console.WriteLine("===========================================");
+        Console.WriteLine("Введите 1 для перехода к задаче 1: ");
+        Console.WriteLine("Введите 2 для перехода к задаче 2: ");
+        Console.WriteLine("Введите 3 для перехода к задаче 3: ");
+        Console.WriteLine("Введите 0 для выхода из программы: ");
+        Console.WriteLine("===========================================");
+        paragraph = Console.ReadLine();
+        if (paragraph == "1") Task_34();
+        if (paragraph == "2") Task_36();
+        if (paragraph == "3") Task_38();
+        if (paragraph == "0") break;
+    }
+}
 
-
-
+menu();
 
 

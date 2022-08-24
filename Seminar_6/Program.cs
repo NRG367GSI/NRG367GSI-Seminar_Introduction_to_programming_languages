@@ -55,7 +55,7 @@ Console.WriteLine(str);
 void menu() //Вызывает методы
 {    
     string paragraph = String.Empty;
-    while (paragraph != "1" || paragraph != "2")
+    while (paragraph != "1" || paragraph != "2" || paragraph != "0")
     {
         Console.WriteLine("===========================================");
         Console.WriteLine("Введите 1 для перехода к задаче 1: ");
