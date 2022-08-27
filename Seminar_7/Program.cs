@@ -17,7 +17,7 @@ m = 3, n = 4.
 8 4 2 4
 */
 
-int getANinteger() //Запрашивает значение пока не будит введено целое число
+int GetANinteger() //Запрашивает значение пока не будит введено целое число
 {
     int number = 0;
     bool prot = false;
@@ -30,7 +30,7 @@ int getANinteger() //Запрашивает значение пока не бу�
     return number;
 }
 
-void matrixIntOutput(int[,] matrix)
+void MatrixIntOutput(int[,] matrix)
 {
     Console.Clear();
     for (int i =0; i < matrix.GetLength(0); i++)
@@ -46,12 +46,12 @@ void matrixIntOutput(int[,] matrix)
     }
 }
 
-int[,] getSumIndex() //Двумерный массив, каждый элемент в массиве находится по формуле: Aₘₙ = m+n.
+int[,] GetSumIndex() //Двумерный массив, каждый элемент в массиве находится по формуле: Aₘₙ = m+n.
 {
     Console.Write("Введите число строк матрици: ");
-    int rows = Math.Abs(getANinteger());
+    int rows = Math.Abs(GetANinteger());
     Console.Write("Введите число столбцов матрици: ");
-    int columns = Math.Abs(getANinteger());
+    int columns = Math.Abs(GetANinteger());
 
     
     int[,] matrix = new int[rows, columns];
@@ -65,9 +65,9 @@ int[,] getSumIndex() //Двумерный массив, каждый элеме�
     return matrix;
 }
 
-int[,] matrixPowNum() //Двумерный массив, элементы, у которых оба индекса чётные, заменяет эти элементы на их квадраты
+int[,] MatrixPowNum() //Двумерный массив, элементы, у которых оба индекса чётные, заменяет эти элементы на их квадраты
 {
-    int[,] matrix = getSumIndex();
+    int[,] matrix = GetSumIndex();
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         for (int j =0; j < matrix.GetLength(1); j++)
@@ -78,7 +78,7 @@ int[,] matrixPowNum() //Двумерный массив, элементы, у к
     return matrix;
 }
 
-void menu() //Вызывает методы
+void Menu() //Вызывает методы
 {    
     string paragraph = String.Empty;
     while (paragraph != "1" || paragraph != "2" || paragraph != "0")
@@ -90,10 +90,10 @@ void menu() //Вызывает методы
         Console.WriteLine("Введите 0 для выхода из программы: ");
         Console.WriteLine("===========================================");
         paragraph = Console.ReadLine();
-        if (paragraph == "1") matrixIntOutput(getSumIndex());
-        if (paragraph == "2") matrixIntOutput(matrixPowNum());
+        if (paragraph == "1") MatrixIntOutput(GetSumIndex());
+        if (paragraph == "2") MatrixIntOutput(MatrixPowNum());
         if (paragraph == "0") break;
     }
 }
 
-menu();
+Menu();

@@ -59,13 +59,12 @@ void numberSearch(int min = -10, int max = 10) //Поиск индексов з�
     int rows = Math.Abs(protection());
     Console.Write("Введите число столбцов матрици: ");
     int columns = Math.Abs(protection());
-
     Console.Write("Введите искомое значение: ");
     int num = protection();
+
     int size = 0;
     int count = 0;
     int[,] matrixIndex = new int[rows * columns + 1, 2];
-    
     int[,] matrix = new int[rows, columns];
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
@@ -156,10 +155,10 @@ for (int i = 0; i < rows; i++)
     }
 }
 
-void menu() //Вызывает методы
+void Menu() //Вызывает методы
 {    
     string paragraph = String.Empty;
-    while (paragraph != "1" || paragraph != "2" || paragraph != "0")
+    while (paragraph != "1" || paragraph != "2" || paragraph != "3"|| paragraph != "0")
     {
         Console.WriteLine();
         Console.WriteLine("===========================================");
@@ -171,9 +170,9 @@ void menu() //Вызывает методы
         paragraph = Console.ReadLine();
         if (paragraph == "1") matrixMxN();
         if (paragraph == "2") numberSearch();
-        if (paragraph == "2") average();
+        if (paragraph == "3") average();
         if (paragraph == "0") break;
     }
 }
 
-menu();
+Menu();
