@@ -156,4 +156,24 @@ for (int i = 0; i < rows; i++)
     }
 }
 
-average();
+void menu() //Вызывает методы
+{    
+    string paragraph = String.Empty;
+    while (paragraph != "1" || paragraph != "2" || paragraph != "0")
+    {
+        Console.WriteLine();
+        Console.WriteLine("===========================================");
+        Console.WriteLine("Введите 1 для перехода к задаче 47: ");
+        Console.WriteLine("Введите 2 для перехода к задаче 50: ");
+        Console.WriteLine("Введите 3 для перехода к задаче 52: ");
+        Console.WriteLine("Введите 0 для выхода из программы: ");
+        Console.WriteLine("===========================================");
+        paragraph = Console.ReadLine();
+        if (paragraph == "1") matrixMxN();
+        if (paragraph == "2") numberSearch();
+        if (paragraph == "2") average();
+        if (paragraph == "0") break;
+    }
+}
+
+menu();
