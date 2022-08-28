@@ -100,39 +100,34 @@ void numberSearch(int min = -10, int max = 10) //Поиск индексов з�
             result[index, 0] = matrixIndex[k, 0];
             result[index, 1] = matrixIndex[k, 1];
             Console.WriteLine($"{index + 1} | {result[index, 0]}, {result[index, 1]}");
-            Console.WriteLine();
+            
         }
+    
     }
     if (index == -1) Console.WriteLine($"Искомого числа {num} в заданном массиве нет!");
 }
 
-void average(int min = 0, int max = 10)
+void average(int min = -10, int max = 10) //Находит среднее арифметическое элементов в каждом столбце
 {
     Console.Write("Введите число строк матрици: ");
     int rows = Math.Abs(protection());
     Console.Write("Введите число столбцов матрици: ");
     int columns = Math.Abs(protection());
-
     int[,] matrix = new int[rows, columns];
     int[,] matrix2 = new int[columns, rows];
-    
+    double[] array = new double[columns];
 
     for (int i = 0; i < rows; i++)
     {
-        //double summ =0;
         for (int j = 0; j < columns; j++)
         {
             matrix[i, j] = new Random().Next(min, max);
             Console.Write($"  {matrix[i,j]}   ");
-            //summ += matrix[i, j];
-            //array[i] = summ/columns;
-
         }
         
         Console.WriteLine();
     }
     Console.WriteLine($"=============================================");
-    //foreach (double k in array) Console.Write($" {Math.Round(k, 2)} ");
 
 
 for (int i = 0; i < rows; i++)
@@ -144,15 +139,22 @@ for (int i = 0; i < rows; i++)
     }
     for (int i = 0; i < rows; i++)
     {
+        double summ = 0;
 
         for (int j = 0; j < columns; j++)
         {
             
-            Console.Write($"  {matrix2[i,j]}   ");
+            Console.Write($"  {matrix[i,j]}   ");
+            summ += matrix2[i, j];
+            array[i] = Math.Round(summ/columns, 2);
+            
         }
         
         Console.WriteLine();
     }
+    Console.WriteLine("======================================");
+    foreach (double k in array) Console.Write($"  {k}   ");
+    Console.WriteLine();
 }
 
 void Menu() //Вызывает методы
@@ -172,6 +174,8 @@ void Menu() //Вызывает методы
         if (paragraph == "2") numberSearch();
         if (paragraph == "3") average();
         if (paragraph == "0") break;
+        Console.WriteLine("Нажмите Enter для выхода в меню: ");
+        Console.ReadLine();
     }
 }
 

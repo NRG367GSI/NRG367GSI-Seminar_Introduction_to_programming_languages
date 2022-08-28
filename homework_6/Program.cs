@@ -104,6 +104,7 @@ void menu() //Вызывает методы
         if (paragraph == "2") Task_43();
         if (paragraph == "3") Task_optional();
         if (paragraph == "0") break;
+        
     }
 }
 
