@@ -1,16 +1,24 @@
 ﻿int[] Array(int[] array)
 {
-    int[] even = new int[array.Length];
+    int index =
     int size = 0;
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i] % 2 == 0)
         {
-            even[i] = array[i];
             size ++;
         }
     }
-    for (int k = 0; )
+    int[] even = new int[size];
+    size = 0;
+    for (int j = 0; j < size; j++)
+    {
+        if (array[j] % 2 == 0)
+        {
+            even[size] = array[j];
+            size++;
+        }
+    }
     return even;
 }
 
