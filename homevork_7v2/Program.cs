@@ -160,7 +160,13 @@ for (int i = 0; i < array.GetLength(0); i++)
 }
 Console.WriteLine("Наименьший элемент: " + min);
 
-Console.WriteLine("Вывод преобразованной матрицы");
-for (int i = 0; i < array.GetLength(0); i++)
+int Factorial(int n)
 {
-    for (int j = 0; j < a
+    if (n < 10)
+    {
+        n ++;
+        Factorial(n);
+    }
+    return n;
+}
+
