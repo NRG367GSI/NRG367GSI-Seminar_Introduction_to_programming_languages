@@ -2,24 +2,22 @@
 {
     int number = 0;
     bool prot = false;
-    while (prot != true)
+    while (!prot)
     {
         Console.Write("Введите целое число: ");
         prot = int.TryParse(Console.ReadLine(), out number);
-        if (prot != true) Console.WriteLine("Вы ввели не допустимое значение, повторите ввод: ");
+        if (!prot) Console.WriteLine("Вы ввели не допустимое значение, повторите ввод: ");
     }
     return number;
 }
 
 int[] Array(int[] array)
 {
-    //int[] index = new int[array.Length];
     int size = 0;
     for (int i = 0; i < array.Length; i++)
     {
         if (array[i] % 2 == 0)
         {
-            //index
             size ++;
         }
     }
@@ -55,6 +53,60 @@ int[] UserInput()
     return fillarray;
 }
 
+void ParseRows(string[] rows)
+{
+    
+    for (int i = 0; i < rows.Length; i++)
+    {
+        if (Int.TryParse(rows[i], out  num))
+    }
+}
+
 int[] arr =new int[5] {1, 2, 3 ,4, 5};
 
 ArrayOtput(Array(UserInput()));
+
+//https://www.jetbrains.com/ru-ru/lp/mono/
+
+int[,] SortingColumns(int[,] matrix) //Сортирует колонны по убыванию
+{
+    MatrixIntOutput(matrix);
+    for (int i = 0; i < matrix.GetLength(1); i++)
+    {
+        for (int j = 0; j < matrix.GetLength(0); j++)
+        {
+            int max = matrix[j,i];
+            int maxColumns = j;
+            for (int k = j; k < matrix.GetLength(0); k++)
+            {
+                if (max < matrix[k,i])
+                {
+                    max = matrix[k,i];
+                    maxColumns = k;  
+                }
+                matrix[maxColumns,i] = matrix[j,i];
+                matrix[j,i] = max;   
+            }
+        }
+    }
+    return matrix;
+}
+
+void SearchMax(int[,] matrix) //
+{
+    MatrixIntOutput(matrix);
+    int max = matrix[0,0];
+    int maxRows = 0;
+
+    for (int i = 0; i < matrix.GetLength(0); i++)
+    {
+        if (max < matrix[i,0])
+        {
+            max = matrix[i,0];
+            maxRows = i;
+        }
+    }
+    matrix[maxRows,0] = matrix[0,0];
+    matrix[0,0] = max;
+    Console.WriteLine($"maxRows = {maxRows}, max = {max}, matrix[0,0] = {matrix[0,0]}, matrix[maxRows,0] = {matrix[maxRows,0]} ");
+}

@@ -1,7 +1,4 @@
-﻿/*
-Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
-*/
-
+﻿
 int[,] FillMatrix(int rows = 3, int columns = 5, int min = -10, int max = 10) //Матрица заполненная случайными целыми значениями 
 {
     int[,] matrix = new int[rows, columns];
@@ -58,49 +55,6 @@ void MatrixIntOutput(int[,] matrix) //Выводит матрецу в конс�
     }
 }
 
-void SearchMax(int[,] matrix) //
-{
-    MatrixIntOutput(matrix);
-    int max = matrix[0,0];
-    int maxRows = 0;
-
-    for (int i = 0; i < matrix.GetLength(0); i++)
-    {
-        if (max < matrix[i,0])
-        {
-            max = matrix[i,0];
-            maxRows = i;
-        }
-    }
-    matrix[maxRows,0] = matrix[0,0];
-    matrix[0,0] = max;
-    Console.WriteLine($"maxRows = {maxRows}, max = {max}, matrix[0,0] = {matrix[0,0]}, matrix[maxRows,0] = {matrix[maxRows,0]} ");
-}
-
-int[,] SortingColumns(int[,] matrix) //
-{
-    MatrixIntOutput(matrix);
-    for (int i = 0; i < matrix.GetLength(1); i++)
-    {
-        for (int j = 0; j < matrix.GetLength(0); j++)
-        {
-            int max = matrix[j,i];
-            int maxColumns = j;
-            for (int k = j; k < matrix.GetLength(0); k++)
-            {
-                if (max < matrix[k,i])
-                {
-                    max = matrix[k,i];
-                    maxColumns = k;  
-                }
-                matrix[maxColumns,i] = matrix[j,i];
-                matrix[j,i] = max;   
-            }
-        }
-    }
-    return matrix;
-}
-
 int[,] SortingRows(int[,] matrix) //Сортирует строки матреци по убыванию
 {
     MatrixIntOutput(matrix);
@@ -124,12 +78,6 @@ int[,] SortingRows(int[,] matrix) //Сортирует строки матрец
     }
     return matrix;
 }
-
-//MatrixIntOutput(SortingRows(FillMatrix(10, 5)));
-
-/*
-Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
-*/
 
 void MinSummRows(int[,] matrix) //Выводит минемальную сумму строк матрици
 {
@@ -160,67 +108,80 @@ void MinSummRows(int[,] matrix) //Выводит минемальную сумм
     Console.WriteLine($"Минемальная сумма строк: {min}  ");
 }
 
-//MinSummRows(FillMatrix(10,15));
-
-/*
-Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-*/
-
-int[,] MultiplicationMatrix()
+int[,] MultiplekationMatrix(int[,] firstMatrix, int[,] secondMatrix) //Умножение матриц
 {
-    int[,] firstMatrix = new int[3, 3] {{2, 4, 0},
-                                        {3, 2, 0},
-                                        {0, 0, 0}};
+    int[,] mult = new int[firstMatrix.GetLength(0), secondMatrix.GetLength(1)];
+ 
+    for (int i = 0; i < firstMatrix.GetLength(0); ++i)
+        for (int j = 0; j < secondMatrix.GetLength(0); ++j)
+            for (int k = 0; k < secondMatrix.GetLength(1); ++k)
+                mult[i, k] += firstMatrix[i, j] * secondMatrix[j, k];
+            return mult;
+}
 
-    int[,] secondMatrix = new int[3, 3] {{3, 4, 0},
-                                        {3, 3, 0},
-                                        {0, 0, 0}};
-    
-                    
-    int[,] productMatrix = new int[3,3];
+int[,,] Sequence(int width = 2, int height = 2, int depth = 2, int fromNumber = 10, int toNumber = 100) //Задает  трехмерный массив
+{
+    int unique = 0;
+    int[,,] seq = new int[width, height, depth];
 
-    for (int i = 0; i < 3; i++)
+    for (int i =0; i < width; i++)
     {
-        
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < height; j++)
         {
-            
-            for (int k = 0; k < 3; k++)
+            for (int k = 0; k < depth; k++)
             {
-                int summ = 0;
-                for (int l = 0; l < 3; l++)
+                foreach (int l in seq)
                 {
-                    summ += firstMatrix[j,i] * secondMatrix[l,k];
-                    //Console.Write($"   {j}, {l}  &  {l}, {k}     =   {j} {k}|");
+                    while (l == unique)
+                    {
+                        unique = new Random().Next(fromNumber, toNumber);
+                        seq[i,j,k] = unique;
+                    }
                 }
-                productMatrix[j,k] = summ;
-                Console.WriteLine(summ);
+            }
+        }
+    }
+    return seq;
+}
+   
+void OutputArray(int[,,] arr) //Выводит в консоль трехмерный массив
+{
+    for (int i =0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+            for (int k = 0; k < arr.GetLength(2); k++)
+            {  
+                Console.Write($" {arr[i,j,k]} ({i}, {j}, {k})  ");
             }
             Console.WriteLine();
-            
         }
         Console.WriteLine();
     }
-    Console.WriteLine();
-    return productMatrix;
+} 
+
+void Menu() //Вызывает методы
+{    
+    string paragraph = String.Empty;
+    while (paragraph != "1" || paragraph != "2" || paragraph != "3"|| paragraph != "4"|| paragraph != "0")
+    {
+        Console.WriteLine();
+        Console.WriteLine("===========================================");
+        Console.WriteLine("Введите 1 для перехода к задаче 54: ");
+        Console.WriteLine("Введите 2 для перехода к задаче 56: ");
+        Console.WriteLine("Введите 3 для перехода к задаче 58: ");
+        Console.WriteLine("Введите 4 для перехода к задаче 60: ");
+        Console.WriteLine("Введите 0 для выхода из программы: ");
+        Console.WriteLine("===========================================");
+        paragraph = Console.ReadLine();
+        if (paragraph == "1") MatrixIntOutput(SortingRows(FillMatrix(10, 5)));
+        if (paragraph == "2") MinSummRows(FillMatrix(10,15));
+        if (paragraph == "3") MatrixIntOutput(MultiplekationMatrix(FillMatrix(), FillMatrix()));
+        if (paragraph == "4") OutputArray(Sequence());
+        if (paragraph == "0") break;
+        Console.WriteLine("Нажмите Enter для выхода в меню: ");
+        Console.ReadLine();
+    }
 }
 
-int[,] mult()
-{
-    int[,] ar1 = new int[3, 3] {{2, 4, 0},
-                                        {3, 2, 0},
-                                        {0, 0, 0}};
-
-    int[,] ar2 = new int[3, 3] {{3, 4, 0},
-                                        {3, 3, 0},
-                                        {0, 0, 0}};
-    int[,] m = new int[ar1.GetLength(0), ar2.GetLength(1)];
- 
-    for (int i = 0; i < ar1.GetLength(0); ++i)
-        for (int j = 0; j < ar2.GetLength(0); ++j)
-            for (int k = 0; k < ar2.GetLength(1); ++k)
-                m[i, k] += ar1[i, j] * ar2[j, k];
-            return m;
-}
- 
-MatrixIntOutput(mult());
+Menu();
