@@ -185,3 +185,38 @@ void Menu() //Вызывает методы
 }
 
 Menu();
+
+int [,] FillSpiral(int[,]arr, int n)
+{
+for (int dX = 0; dX < n - 1; dX++)
+{
+// слева направо
+for (int i = 0 + dX; i < n - dX; i++)
+{
+arr[0 + dX, i] = count;
+count++;
+}
+count--;
+//сверху вниз
+for (int i = 0 + dX; i < n - dX; i++)
+{
+arr[i, n - 1 - dX] = count;
+count++;
+}
+count--;
+// справа влево
+for (int i = n - 1 - dX; i >= 0 + dX; i--)
+{
+arr[n - 1 - dX, i] = count;
+count++;
+}
+count--;
+// снизу вверх
+for (int i = n - 1 - dX ; i > 0 + dX ; i--)
+{
+arr[i , 0 + dX] = count;
+count++;
+}
+}
+return arr;
+}
